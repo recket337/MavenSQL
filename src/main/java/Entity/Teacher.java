@@ -6,15 +6,15 @@ package Entity;
 
         private String name;
 
-        private int age;
-
         private String mainSubject;
 
-        public Teacher(int id, String name, int age, String mainSubject) {
+        private int age;
+
+        public Teacher(int id, String name, String mainSubject, int age) {
             this.id = id;
             this.name = name;
-            this.age = age;
             this.mainSubject = mainSubject;
+            this.age = age;
         }
 
         public int getId() {
@@ -33,14 +33,6 @@ package Entity;
             this.name = name;
         }
 
-        public int getAge() {
-            return age;
-        }
-
-        public void setAge(int age) {
-            this.age = age;
-        }
-
         public String getMainSubject() {
             return mainSubject;
         }
@@ -49,13 +41,21 @@ package Entity;
             this.mainSubject = mainSubject;
         }
 
+        public int getAge() {
+            return age;
+        }
+
+        public void setAge(int age) {
+            this.age = age;
+        }
+
         @Override
         public String toString() {
             return "Teacher{" +
                     "id=" + id +
                     ", name='" + name + '\'' +
-                    ", age=" + age +
                     ", mainSubject='" + mainSubject + '\'' +
+                    ", age=" + age +
                     '}';
         }
     }
