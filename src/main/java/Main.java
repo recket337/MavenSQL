@@ -1,3 +1,6 @@
+import Crud.PupilCrud;
+import Entity.Pupil;
+
 import java.sql.*;
 
 
@@ -30,7 +33,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Connection connection = null;
+/*        Connection connection = null;
 
         try {
             Class.forName("org.postgresql.Driver");
@@ -60,6 +63,28 @@ public class Main {
                     e.printStackTrace();
                 }
             }
+        }*/
+
+        Pupil pupil = new Pupil (2, "Vova", "Putin", 4);
+       Pupil pupil2 = new Pupil (2, "Dima", "Medvedev", 4);
+
+        PupilCrud pupilCrud = new PupilCrud();
+
+        pupilCrud.create(pupil,connect());
+
+        pupilCrud.update(pupil2,connect());
+
+        pupilCrud.read(2);
+
+        pupilCrud.delete(2, connect());
+
+
+
+
+        try {
+            connect().close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }
