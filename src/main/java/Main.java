@@ -9,17 +9,36 @@ public class Main {
 
     static final String PASS = "123";
 
-    public static void main(String[] args) {
+    public static Connection connect() {
 
-        Connection conn = null;
+        Connection connection = null;
 
         try {
             Class.forName("org.postgresql.Driver");
 
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            connection = DriverManager.getConnection(DB_URL, USER, PASS);
+
+
+        } catch (Exception e) {
+
+            System.out.println("Problems with connection");
+
+            e.printStackTrace();
+        }
+        return connection;
+    }
+
+    public static void main(String[] args) {
+
+        Connection connection = null;
+
+        try {
+            Class.forName("org.postgresql.Driver");
+
+            connection = DriverManager.getConnection(DB_URL, USER, PASS);
             System.out.println("connected");
 
-            Statement statement = conn.createStatement();
+            Statement statement = connection.createStatement();
 
             ResultSet result = statement.executeQuery("select * from pupils");
             int i = 1;
@@ -34,9 +53,9 @@ public class Main {
 
             e.printStackTrace();
         } finally {
-            if (conn != null) {
+            if (connection != null) {
                 try {
-                    conn.close();
+                    connection.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
